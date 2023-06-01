@@ -1,5 +1,6 @@
 package com.testproject.kotlin_neco_notepad
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -17,34 +18,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun onClickSave(view: View) {
+    fun onClickNew(view: View) {
 //        setContentView(R.layout.activity_main)
-        var tvTest = findViewById<TextView>(R.id.tvTest)
-        tvTest.text = ""
-        myDbManager.openDb()
-        var edTitle = findViewById<EditText>(R.id.edTitle)
-        var edContent = findViewById<EditText>(R.id.edContent)
-        myDbManager.insertToDb(edTitle.text.toString(), edContent.text.toString())
-        val dataList = myDbManager.readDbData()
-        for(item in dataList){
-            tvTest.append(item)
-            tvTest.append("\n")
-        }
+        var i = Intent(this, EditActivity::class.java)
+        startActivity(i)
+
     }
 
     override fun onResume(){
         super.onResume()
         myDbManager.openDb()
-        var tvTest = findViewById<TextView>(R.id.tvTest)
+//        var tvTest = findViewById<TextView>(R.id.tvTest)
 //        tvTest.text = ""
 //        var edTitle = findViewById<EditText>(R.id.edTitle)
 //        var edContent = findViewById<EditText>(R.id.edContent)
 //        myDbManager.insertToDb(edTitle.text.toString(), edContent.text.toString())
-        val dataList = myDbManager.readDbData()
-        for(item in dataList){
-            tvTest.append(item)
-            tvTest.append("\n")
-        }
+//        val dataList = myDbManager.readDbData()
     }
 
     override fun onDestroy() {
